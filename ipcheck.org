@@ -1,0 +1,27 @@
+* bugs
+* todos
+** Coding
+*** TODO Stop the program printing anything
+Otherwise root sends you an email everytime...
+... not cool 
+thats to the internal athena email access with:
+cat /var/mail/gns
+** Code maintenance
+*** TODO Setup git repo for the project
+*** TODO Write more comments
+*** TODO Add a banner (with Author name and stuff)
+** Writing
+*** TODO Finish the tutorial
+**** TODO Write the intro to the whole thing
+Mention RPi's as many people may already have them on all the time
+Also if you need the IP for ssh, the computer will be on anyways
+Mention subsonic
+**** TODO Write intro for cron, say how to run it every hour
+You can say about my server having bare spare power so its not an issue
+But with RPi servers you probably want to do it less frequently
+**** TODO Briefly mention bug fixing
+Say where the email comes in and how to look at it
+cat /var/mail/gns
+
+*** TODO When your web skills get good make a web page!
+
