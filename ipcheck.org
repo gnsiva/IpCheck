@@ -1,15 +1,49 @@
 * bugs
+** TODO Thunderbird
+*** Doesn't display the message
+*** Gmail is fine though
+*** Try to add a subject?
 * todos
 ** Coding
-*** TODO Stop the program printing anything
+*** DONE Stop the program printing anything
 Otherwise root sends you an email everytime...
 ... not cool 
 thats to the internal athena email access with:
 cat /var/mail/gns
+*** DONE Move email address to a separate file
+*** DONE Move recipients list to a separate file
+*** DONE Use current directory as programDirectory
+*** TODO Write a setup.py which does makes the pw file and stuff
+You can put the instructions for how to do the cron job part it there too
+*** DONE Write a function for writing a file in dropbox
+*** DONE Write a bash function for accessing server remotely
+**** Have a T/F toggle in the globals section
+*** TODO Sort out firefox shortcut
+**** The code
+firefox "$(cat ~/Dropbox/ip):9091"
+**** The shortcut ideas
+Maybe a unity launcher shortcut?
+Mac should be relatively easy with that mac automator
+*** DONE Command line program interface
+**** DONE Work out how to do it
+**** DONE -h
+**** DONE print report
+**** DONE email change?
+**** DONE save ip in dropbox
+**** DONE Dropbox file
+*** TODO Maybe add a subject line [[http://docs.python.org/2/library/smtplib.html#smtplib.SMTP.sendmail][link]]
 ** Code maintenance
-*** TODO Setup git repo for the project
-*** TODO Write more comments
-*** TODO Add a banner (with Author name and stuff)
+*** DONE Setup git repo for the project
+*** DONE Write more comments
+*** DONE Add a banner (with Author name and stuff)
+Filename: 
+Author: Ganesh Sivalingam
+Email: g.n.sivalingam@gmail.com
+GitHub: gnsiva (put the proper link)
+Website: ????????????
+Created on: 
+*** TODO Add exceptions for opening files
+**** TODO use isdir for dropbox folder as well
 ** Writing
 *** TODO Finish the tutorial
 **** TODO Write the intro to the whole thing
@@ -22,6 +56,8 @@ But with RPi servers you probably want to do it less frequently
 **** TODO Briefly mention bug fixing
 Say where the email comes in and how to look at it
 cat /var/mail/gns
-
-*** TODO When your web skills get good make a web page!
+*** TODO Make a blog entry
+** Misc
+*** Post a comment to here when you are done
+http://www.infopackets.com/news/internet/2004/20040811_email_ip_address_change.htm
 

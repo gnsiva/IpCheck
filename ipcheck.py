@@ -1,4 +1,13 @@
 #! /usr/bin/python
+
+# ================
+# filename: ipcheck.py
+# author: Ganesh N. Sivalingam
+# mail: g dot n dot sivalingam at gmail dot com
+# github: https://github.com/gnsiva
+# website: (tba)
+# ================
+
 import urllib
 import smtplib
 import os,optparse
