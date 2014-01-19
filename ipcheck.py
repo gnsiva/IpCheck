@@ -31,7 +31,7 @@ parser.add_option('--dbfile',dest='dbfile',default='%s/Dropbox/ip' %os.path.expa
 
 (opts,args) = parser.parse_args()
 
-# Storing Options
+# Storing command line arguments
 printReport = opts.printreport
 emailNewIp = not opts.noemail
 dropboxNewIp = not opts.nodropbox
@@ -39,6 +39,9 @@ dropboxFile = opts.dbfile
 
 #================================================================
 # Globals
+"""All of the associated files are to be kept in the same directory
+as the script. The following gets their full paths.
+"""
 programDirectory = os.path.dirname(__file__)
 
 current_ip_fn = os.path.join(programDirectory,'current_ip')
@@ -49,16 +52,28 @@ recipients_fn = os.path.join(programDirectory,'recipients')
 #================================================================
 # Functions
 
-def findIP():
+def findIp():
+    """Gets external IP from internet (via icanhazip.com)
+    in format 'xxx:xxx:xxx:xxx\n'.
+    This may break if the server is taken down, should be easy
+    enough to replace with a different service"""
     url = urllib.URLopener()
 
     resp = url.open('http://icanhazip.com/')
-    html = resp.readline()
-    msg = 'Home IP is \n' + html
-    return msg, html
+    ipadr = resp.readline()
+    return ipadr
 
-def checkIP(ipadr):
-    #Check whether same IP as last time, if not then don't email.
+def createMessage(ipadr):
+    msg = \
+"""IP address has changed
+The new address is:
+%s""" %ipadr.rstrip('\n')
+    return msg
+
+def checkIp(ipadr):
+    """Check whether same IP as last time
+    returns True if IP has changed
+    """
     rfid = open(current_ip_fn, 'r')
     old_ip = rfid.readline()
     rfid.close()
@@ -70,6 +85,14 @@ def checkIP(ipadr):
         return False
 
 def sendEmail(msg):
+    """Gets email address, password and recipients list
+    from file in the same folder as the script.
+    One address per line for recipients.
+    Files:
+    emailaddr
+    recipients
+    apppw (password)
+    """
     #Addresses and password
     fromaddr = open(emailaddr_fn,'r').readline().rstrip('\n')
     toaddrs  = [x.rstrip('\n') for x in open(recipients_fn,'r').readlines()]
@@ -87,7 +110,10 @@ def sendEmail(msg):
         print 'Sent to', toaddrs
 
 def writeToDropboxFile(ipadr,filename):
-    # TODO - add try catch to make sure file opened correctly
+    """Writes IP address to a file in dropbox
+    Default is ~/Dropbox/ip
+    Can be changed with CLI arguments
+    """
 
     oFile = open(filename,'wb')
     print >> oFile, ipadr.rstrip('\n')
@@ -100,22 +126,25 @@ def writeToDropboxFile(ipadr,filename):
 #================================================================
 # Main
 
-msg, ipadr = findIP()
+if __name__ == '__main__':
+    ipadr = findIp()
+    msg = createMessage(ipadr)
 
-if printReport:
-    print msg
 
-if checkIP(ipadr):
-    if printReport:
-        print 'Different IP'
+    if checkIp(ipadr):
+        if printReport:
+            print 'Different IP'
 
-    if emailNewIp:
-        sendEmail(msg)
-    if dropboxNewIp:
-        writeToDropboxFile(ipadr,dropboxFile)
-else:
-    if printReport:
-        print 'IP unchanged'
+        if emailNewIp:
+            sendEmail(msg)
+        if dropboxNewIp:
+            writeToDropboxFile(ipadr,dropboxFile)
+
+        if printReport:
+            print msg
+    else:
+        if printReport:
+            print 'IP unchanged\n(%s)' %ipadr.rstrip('\n')
 
 #================================================================
 # Bash alias for remote access
