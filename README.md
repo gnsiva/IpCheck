@@ -1,6 +1,7 @@
 ================================================================
-= IP Check
-= Author: Ganesh N. Sivalingam
+*** IP Check***
+
+Author: Ganesh N. Sivalingam
 
 IP Check is a program for automatically notifying you of changes in
 your external IP address. This allows you to connect to services on
@@ -10,12 +11,13 @@ It can email you changes in IP and/or save changes to a file in
 Dropbox so you will always have access.
 
 Run the following for help on available options:
+
 python ipcheck.py -h
 
 
 
 ================================================================
-= Setup/Installation
+***Setup/Installation***
 
 ***It is recommended that you create a new gmail account for this
 program to reduce security risks.***
@@ -31,7 +33,9 @@ file put all the email addresses you wish to send the IP address to
 one per line.
 
 4. Run the script to test it works. From this directory run:
+
 you@yourcomputer$ python ipcheck.py -p
+
 A file called current_ip should be updated to your external IP,
 your recipients should receive an email with the IP and as long as
 you have Dropbox installed in the default directory a file called "ip"
@@ -40,6 +44,7 @@ will be added containing your IP.
 5. Add to cron so that the computer automatically runs the script 
 periodically.
 To add something to crontab enter:
+
 you@yourcomputer$ crontab -e
 
 To make the script run every 5 minutes enter this at the bottom of the
