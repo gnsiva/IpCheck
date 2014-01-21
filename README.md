@@ -17,8 +17,8 @@ python ipcheck.py -h
 ================================================================
 = Setup/Installation
 
-***It is recommended that you create a new gmail account just for this
-to reduce security risks.***
+***It is recommended that you create a new gmail account for this
+program to reduce security risks.***
 
 1. Add a file called "emailaddr" in this directory and put the email 
 address you want to send IP changes FROM on the first line. 
@@ -44,6 +44,7 @@ you@yourcomputer$ crontab -e
 
 To make the script run every 5 minutes enter this at the bottom of the
 file:
+
 */5 * * * * python /absolute/path/to/this/directory/ipcheck.py
 
 
