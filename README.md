@@ -64,6 +64,6 @@ file:
 6. Create a bash alias to remotely ssh into your computer without
 looking at your ip (only works if Dropbox sync is enabled).
 
-alias <yournickname>="ssh -XY <username>@$(cat ~/Dropbox/ip)"
+alias yournickname="ssh -XY yourusername@$(cat ~/Dropbox/ip)"
 
 
