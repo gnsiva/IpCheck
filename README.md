@@ -14,7 +14,13 @@ Run the following for help on available options:
 
 python ipcheck.py -h
 
-
+================================================================
+***Requirements***
+1. Python 2.x
+2. Instructions 5 and 6 only work with Unix systems (mac and linux
+are both fine). It will be possible to schedule in Windows using
+"Task Scheduler", but as I am not a Windows user I can not help with
+the setup.
 
 ================================================================
 ***Setup/Installation***
@@ -51,5 +57,13 @@ To make the script run every 5 minutes enter this at the bottom of the
 file:
 
 */5 * * * * python /absolute/path/to/this/directory/ipcheck.py
+
+================================================================
+***Optional***
+
+6. Create a bash alias to remotely ssh into your computer without
+looking at your ip (only works if Dropbox sync is enabled).
+
+alias <yournickname>="ssh -XY <username>@$(cat ~/Dropbox/ip)"
 
 

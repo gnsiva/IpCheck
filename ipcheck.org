@@ -3,6 +3,14 @@
 *** Doesn't display the message
 *** Gmail is fine though
 *** Try to add a subject?
+** TODO Change current_ip after email & dropbox
+*** At the moment the current_ip file is changed automatically
+*** If email/dropbox fails then the ip is deemed to be sorted and the program doesn't run
+**** Problem was program couldn't find a file (can't remember which)
+**** Wasn't dropbox file IIRC
+** DONE Deal with empty lines in recipients file
+** DONE if __name__ == '__main__' bug
+** TODO change top line to /usr/bin/env python instead of /usr/bin/python
 * todos
 ** Coding
 *** DONE Stop the program printing anything
@@ -44,7 +52,9 @@ Website: ????????????
 Created on: 
 *** TODO Add exceptions for opening files
 **** TODO use isdir for dropbox folder as well
+*** TODO Delete the alias BS at the bottom of the script
 ** Writing
+*** TODO First write simple read me, then a proper tutorial
 *** TODO Finish the tutorial
 **** TODO Write the intro to the whole thing
 Mention RPi's as many people may already have them on all the time

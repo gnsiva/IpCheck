@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 
 # ================
 # filename: ipcheck.py
@@ -6,6 +6,7 @@
 # mail: g dot n dot sivalingam at gmail dot com
 # github: https://github.com/gnsiva
 # website: (tba)
+# licence: GPLv2
 # ================
 
 import urllib
@@ -51,7 +52,7 @@ dropboxFile = opts.dbfile
 """All of the associated files are to be kept in the same directory
 as the script. The following gets their full paths.
 """
-programDirectory = os.path.dirname(__file__)
+programDirectory = os.path.abspath(os.path.dirname(__file__))
 
 current_ip_fn = os.path.join(programDirectory,'current_ip')
 apppw_fn = os.path.join(programDirectory,'apppw')
@@ -83,7 +84,15 @@ def checkIp(ipadr):
     """Check whether same IP as last time
     returns True if IP has changed
     """
-    rfid = open(current_ip_fn, 'r')
+
+    # Open current_ip file, if doesn't exist make one
+    try:
+        rfid = open(current_ip_fn, 'r')
+    except:
+        rfid = open(current_ip_fn, 'w')
+        rfid.close()
+        rfid = open(current_ip_fn, 'r')
+
     old_ip = rfid.readline()
     rfid.close()
     if ipadr != old_ip:
@@ -104,7 +113,7 @@ def sendEmail(msg):
     """
     #Addresses and password
     fromaddr = open(emailaddr_fn,'r').readline().rstrip('\n')
-    toaddrs  = [x.rstrip('\n') for x in open(recipients_fn,'r').readlines()]
+    toaddrs  = [x.rstrip('\n') for x in open(recipients_fn,'r').readlines() if len(x) > 1]
     password = open(apppw_fn,'r').readline()
 
     # The actual mail send
@@ -155,7 +164,3 @@ if __name__ == '__main__':
         if printReport:
             print 'IP unchanged\n(%s)' %ipadr.rstrip('\n')
 
-#================================================================
-# Bash alias for remote access
-#alias athenaRemote="ssh -XY -p 9999 gns@$(cat ~/Dropbox/ip)"
-#alias <yournickname>="ssh -XY <username>@$(cat <yourDropboxFileLocation>)"
